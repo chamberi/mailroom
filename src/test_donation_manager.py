@@ -2,14 +2,14 @@
 import pytest
 
 THANKS_TABLE = [
-    ["q", original_prompt()],
-    ["Q", original_prompt()],
-    ["quit", orginal_prompt()],
-    ["QUIT", orginal_prompt()],
-    ["Quit", orginal_prompt()],
-    ["list", enter_full_name()],
-    ["LIST", enter_full_name()],
-    ["List", enter_full_name()],
+    ["q", "quitting"],
+    ["Q", "quitting"],
+    ["quit", "quitting"],
+    ["QUIT", "quitting"],
+    ["Quit", "quitting"],
+    ["list", "printing list"],
+    ["LIST", "printing list"],
+    ["List", "printing list"],
 ]
 
 
