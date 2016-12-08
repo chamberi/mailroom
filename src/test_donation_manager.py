@@ -3,6 +3,8 @@ import pytest
 
 LIST_TABLE = [
     ["sally jones", {"john smith": [10, 20, 30]}, {"john smith": [10, 20, 30], "sally jones": []}],
+    ["john smith", {"john smith": [10, 20, 30]}, {"john smith": [10, 20, 30]}],
+    ["Colin", {"colin": []}, {"colin": [], "Colin": []}]
 ]
 
 

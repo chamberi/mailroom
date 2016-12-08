@@ -21,21 +21,21 @@ def enter_full_name():
     send_thanks(user_input)
 
 
-def send_thanks(user_input):
+def send_thanks(user_input, dictionary):
     """Send thanks."""
     if user_input.lower() == 'q' or user_input.lower() =='quit':
-        # original_prompt()
+        original_prompt()
         return "quitting"
     elif user_input.lower() == "list":
-        # for name in DONORS_DICT:
-        #     print(name)
-            # enter_full_name()
+        for name in dictionary:
+            print(name)
+            enter_full_name()
             return "printing list"
-    elif user_input not in DONORS_DICT:
-        DONORS_DICT[user_input] = []
-        return handle_donation(user_input)
+    elif user_input not in dictionary:
+        dictionary[user_input] = []
+        return dictionary
     else:
-        return handle_donation(user_input)
+        return dictionary
 
 
 def handle_donation():
