@@ -1,15 +1,15 @@
 """This is test module for donation_manager."""
 import pytest
 
-LIST_TABLE = [
+NEW_DONOR_TABLE = [
     ["sally jones", {"john smith": [10, 20, 30]}, {"john smith": [10, 20, 30], "sally jones": []}],
-    ["john smith", {"john smith": [10, 20, 30]}, {"john smith": [10, 20, 30]}],
+    ["john smith", {"john smith": [10, 20, 30]}, {"john smith": [10, 20, 30], "john smith": []}],
     ["Colin", {"colin": []}, {"colin": [], "Colin": []}]
 ]
 
 
-@pytest.mark.parametrize("user_input, dictionary, result", LIST_TABLE)
-def test_send_thanks_new_name(user_input, dictionary, result):
+@pytest.mark.parametrize("user_input, dictionary, result", NEW_DONOR_TABLE)
+def test_add_new_donor(user_input, dictionary, result):
     """Test send thanks when user adds a new name."""
-    from donation_manager import send_thanks
-    assert send_thanks(user_input, dictionary) == result
+    from donation_manager import add_new_donor
+    assert add_new_donor(user_input, dictionary) == result

@@ -32,10 +32,15 @@ def send_thanks(user_input, dictionary):
             enter_full_name()
             return "printing list"
     elif user_input not in dictionary:
-        dictionary[user_input] = []
-        return dictionary
+        add_new_donor(user_input, dictionary)
+        handle_donation()
     else:
         return dictionary
+
+def add_new_donor(user_input, dictionary):
+        dictionary[user_input] = []
+        return dictionary
+
 
 
 def handle_donation():
