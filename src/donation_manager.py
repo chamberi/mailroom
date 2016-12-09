@@ -3,46 +3,76 @@ from __future__ import print_function
 DONORS_DICT = {}
 
 
-def original_prompt():
+def original_prompt(dictionary):
     """Navigate our script."""
     while True:
         user_choice = input("do you want to a: 'Send a Thank You?' or b:'Create a Report'? ")
-        if user_choice.lower() == 'q' or 'quit':
+        if user_choice.lower() == 'q':
             return
         elif user_choice == 'a':
-            enter_full_name()
+            print(user_choice)
+            enter_full_name(dictionary)
         elif user_choice == 'b':
             return print("recreating full report")
 
 
-def enter_full_name():
+def enter_full_name(dictionary):
     """Prompt the user to enter a donor name."""
     user_input = input('Enter a Full Name: ')
-    send_thanks(user_input)
+    send_thanks(user_input, dictionary)
 
 
 def send_thanks(user_input, dictionary):
     """Send thanks."""
-    if user_input.lower() == 'q' or user_input.lower() =='quit':
-        original_prompt()
+    if user_input.lower() == 'q' or user_input.lower() == 'quit':
+        original_prompt(dictionary)
         return "quitting"
     elif user_input.lower() == "list":
         for name in dictionary:
             print(name)
-            enter_full_name()
+            enter_full_name(dictionary)
             return "printing list"
     elif user_input not in dictionary:
         add_new_donor(user_input, dictionary)
-        handle_donation()
+        enter_amount(user_input, dictionary)
     else:
-        return dictionary
+        enter_amount(user_input, dictionary)
+
 
 def add_new_donor(user_input, dictionary):
-        dictionary[user_input] = []
+    """Add a new donor key to our dictionary."""
+    dictionary[user_input] = []
+    return dictionary
+
+
+def enter_amount(user_input, dictionary):
+    """Prompt for a donation amount."""
+    donation_amount = input('Enter a donation amout: ')
+    if donation_amount.lower() == 'q':
+        return original_prompt(dictionary)
+    try:
+        donation = int(donation_amount)
+        handle_donation(user_input, dictionary, donation)
+    except ValueError:
+        enter_amount(user_input, dictionary)
+
+
+def handle_donation(user_input, dictionary, donation_amount):
+    """Add donation to dictionary."""
+    try:
+        if donation_amount.lower() == 'q':
+            original_prompt(dictionary)
+    except AttributeError:
+        dictionary[user_input].append(donation_amount)
+        write_email(user_input, dictionary, donation_amount)
         return dictionary
 
 
+def write_email(user_input, dictionary, donation_amount):
+    """Write more tests."""
+    print("that's all we got")
+    return "write more tests."
 
-def handle_donation():
-    """Need to write more tests."""
-    print("write more tests.")
+
+if __name__ == '__main__':
+    original_prompt(DONORS_DICT)
