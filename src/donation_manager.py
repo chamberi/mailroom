@@ -1,5 +1,6 @@
 """This is an implementation of a mailroom manager."""
 from __future__ import print_function
+import math
 DONORS_DICT = {"john smith": [10, 20, 30], "sally jones": [40]}
 
 
@@ -26,8 +27,9 @@ def create_report(dictionary):
         big_total += total
         times = len(dictionary[name])
         big_times += times
-        average = total / times
-        big_average += average
+        average = math.floor(total / times)
+
+        big_average = math.floor(big_total / big_times)
         print("total donations : {} $ number of donations: {} average donation: {}".format(total, times, average))
     return [big_total, big_times, big_average]
 

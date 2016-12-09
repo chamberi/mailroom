@@ -25,10 +25,10 @@ WRITE_EMAIL_TABLE = [
 
 
 CREATE_REPORT_TABLE = [
-    [{"john smith": [10, 20, 30], "sally jones": [40]}, [40, 1, 40]],
-    [{"john smith": [10, 20, 30, 2], "sally jones": [10]}, [62, 4, 15.5]],
-    [{"john smith": [10, 20, 30, 10], "santa claus": [20, 40]}, [70, 4, 17.5]],
-    [{"joe": [30], "Colin": [20, 30, 40, 50, 60]}, [200, 5, 40]],
+    [{"john smith": [10, 20, 30], "sally jones": [40]}, [100, 4, 25]],
+    [{"john smith": [10, 20, 30, 20], "sally jones": [10]}, [90, 5, 18]],
+    [{"john smith": [10, 20, 30, 10], "santa claus": [20, 30]}, [120, 6, 20]],
+    [{"joe": [30], "Colin": [20, 30, 40, 50, 70]}, [240, 6, 40]],
 ]
 
 
