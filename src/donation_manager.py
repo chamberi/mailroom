@@ -36,10 +36,10 @@ def create_report(dictionary):
     return [big_total, big_times, big_average]
 
 
-def print_donor_report(name, total, times, average):
+def print_donor_report(DONOR_LIST):
     """Sort the donor list and print it out."""
-    DONOR_LIST.sort(key=lambda x: x[1])
-    print("DONOR_LIST")
+    new_list = sorted(DONOR_LIST, key=lambda x:x[1], reverse=True)
+    print(new_list)
 
 
 def enter_full_name(dictionary):
