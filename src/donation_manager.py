@@ -2,6 +2,7 @@
 from __future__ import print_function
 import math
 DONORS_DICT = {"john smith": [10, 20, 30], "sally jones": [40]}
+DONOR_LIST = []
 
 
 def original_prompt(dictionary):
@@ -28,10 +29,17 @@ def create_report(dictionary):
         times = len(dictionary[name])
         big_times += times
         average = math.floor(total / times)
-
         big_average = math.floor(big_total / big_times)
+        DONOR_LIST.append([name, total, times, average])
         print("total donations : {} $ number of donations: {} average donation: {}".format(total, times, average))
+    print_donor_report(name, total, times, average)
     return [big_total, big_times, big_average]
+
+
+def print_donor_report(name, total, times, average):
+    """Sort the donor list and print it out."""
+    DONOR_LIST.sort(key=lambda x: x[1])
+    print("DONOR_LIST")
 
 
 def enter_full_name(dictionary):
