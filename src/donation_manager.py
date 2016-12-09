@@ -1,6 +1,6 @@
 """This is an implementation of a mailroom manager."""
 from __future__ import print_function
-DONORS_DICT = {}
+DONORS_DICT = {"john smith": [10, 20, 30], "sally jones": [40]}
 
 
 def original_prompt(dictionary):
@@ -13,7 +13,23 @@ def original_prompt(dictionary):
             print(user_choice)
             enter_full_name(dictionary)
         elif user_choice == 'b':
-            return print("recreating full report")
+            create_report(dictionary)
+
+
+def create_report(dictionary):
+    """Print a report and return total, number and average donations."""
+    big_total = 0
+    big_times = 0
+    big_average = 0
+    for name in dictionary:
+        total = sum(dictionary[name])
+        big_total += total
+        times = len(dictionary[name])
+        big_times += times
+        average = total / times
+        big_average += average
+        print("total donations : {} $ number of donations: {} average donation: {}".format(total, times, average))
+    return [big_total, big_times, big_average]
 
 
 def enter_full_name(dictionary):
@@ -51,7 +67,7 @@ def enter_amount(user_input, dictionary):
     if donation_amount.lower() == 'q':
         return original_prompt(dictionary)
     try:
-        donation = int(donation_amount)
+        donation = float(donation_amount)
         handle_donation(user_input, dictionary, donation)
     except ValueError:
         enter_amount(user_input, dictionary)

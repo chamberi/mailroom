@@ -25,11 +25,12 @@ WRITE_EMAIL_TABLE = [
 
 
 CREATE_REPORT_TABLE = [
-    ["sally jones", {"john smith": [10, 20, 30], "sally jones": [40]}, 40, 1, 40]
-    ["john smith", {"john smith": [10, 20, 30, 2], "sally jones": [10]}, 62, 4, 15.5]
-    ["john smith", {"john smith": [10, 20, 30, 10], "santa claus": [20, 40]}, 70, 4, 17.5]
-    ["Colin", {"joe": [30], "Colin": [20, 30, 40, 50, 60]}, 200, 5, 40]
+    [{"john smith": [10, 20, 30], "sally jones": [40]}, [40, 1, 40]],
+    [{"john smith": [10, 20, 30, 2], "sally jones": [10]}, [62, 4, 15.5]],
+    [{"john smith": [10, 20, 30, 10], "santa claus": [20, 40]}, [70, 4, 17.5]],
+    [{"joe": [30], "Colin": [20, 30, 40, 50, 60]}, [200, 5, 40]],
 ]
+
 
 @pytest.mark.parametrize("user_input, dictionary, result", NEW_DONOR_TABLE)
 def test_add_new_doner(user_input, dictionary, result):
@@ -52,8 +53,8 @@ def test_write_email(user_name, amount, dictionary, result):
     assert write_email(user_name, amount, dictionary) == result
 
 
-@pytest.mark.parametrize("user_name, dictionary, total, times, average", CREATE_REPORT_TABLE)
-def test_create_report(username, dictionary, total, times, average):
+@pytest.mark.parametrize("dictionary, result", CREATE_REPORT_TABLE)
+def test_create_report(dictionary, result):
     """Test create report function to build list of donors and amounts."""
     from donation_manager import create_report
-    assert create_report(user_name, dictionary) == total, times, average
+    assert create_report(dictionary) == result
