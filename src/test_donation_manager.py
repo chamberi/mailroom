@@ -16,6 +16,14 @@ HANDLE_DONATION_TABLE = [
 ]
 
 
+WRITE_EMAIL_TABLE = [
+    ["sally jones", 40, {"john smith": [10, 20, 30], "sally jones": [40]}, "Sally Jones' email"],
+    ["john smith", 2, {"john smith": [10, 20, 30, 2], "sally jones": [10]}, "john smith's email"],
+    ["john smith", 10, {"john smith": [10, 20, 30, 10], "santa claus": [20, 40]}, "john smith's email"],
+    ["Colin", 20, {"joe": [30], "Colin": [20]}, "Colin's email"]
+]
+
+
 @pytest.mark.parametrize("user_input, dictionary, result", NEW_DONOR_TABLE)
 def test_add_new_doner(user_input, dictionary, result):
     """Test send thanks when user adds a new name."""
@@ -28,3 +36,10 @@ def test_handle_donation(user_name, amount, dictionary, result):
     """Test handle new donation amount added to dictionary."""
     from donation_manager import handle_donation
     assert handle_donation(user_name, dictionary, amount) == result
+
+
+@pytest.mark.parametrize("user_name, amount, dictionary, result", WRITE_EMAIL_TABLE)
+def test_write_email(user_name, amount, dictionary, result):
+    """Test writing a string output that serves as an email."""
+    from donation_manager import write_email
+    assert write_email(user_name, amount, dictionary) == result
