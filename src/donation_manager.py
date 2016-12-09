@@ -64,14 +64,15 @@ def handle_donation(user_input, dictionary, donation_amount):
             original_prompt(dictionary)
     except AttributeError:
         dictionary[user_input].append(donation_amount)
-        write_email(user_input, dictionary, donation_amount)
+        write_email(user_input, donation_amount, dictionary)
         return dictionary
 
 
-def write_email(user_input, dictionary, donation_amount):
+def write_email(user_input, donation_amount, dictionary):
     """Write more tests."""
-    print("that's all we got")
-    return "write more tests."
+    output = "Thank you {} for your very generous donation of {}$".format(user_input, donation_amount)
+    print(output)
+    return output
 
 
 if __name__ == '__main__':
