@@ -46,7 +46,7 @@ def create_report(dictionary):
 def print_donor_report(lst):
     """Sort the donor list and print it out in a table format."""
     new_list = sorted(lst, key=lambda x: x[1], reverse=True)
-    new_list.insert(0, ["Full Name", "Total Donations", "Number of Donations", "Average Donation" ])
+    new_list.insert(0, ["Full Name", "Total Donations", "Number of Donations", "Average Donation"])
     print(tabulate(new_list))
     return new_list
 

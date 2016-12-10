@@ -32,6 +32,14 @@ CREATE_REPORT_TABLE = [
 ]
 
 
+SORTED_TABLE = [
+    [
+        [["Travis Walsh", 180, 7, 25], ["Nicholas Baker", 15, 2, 7], ["Kimberly Brown", 80, 5, 16]],
+        [["Full Name", "Total Donations", "Number of Donations", "Average Donation"], ["Travis Walsh", 180, 7, 25], ["Kimberly Brown", 80, 5, 16], ["Nicholas Baker", 15, 2, 7]]
+    ]
+]
+
+
 @pytest.mark.parametrize("user_input, dictionary, result", NEW_DONOR_TABLE)
 def test_add_new_doner(user_input, dictionary, result):
     """Test send thanks when user adds a new name."""
@@ -58,3 +66,10 @@ def test_create_report(dictionary, result):
     """Test create report function to build list of donors and amounts."""
     from donation_manager import create_report
     assert create_report(dictionary) == result
+
+
+@pytest.mark.parametrize("list, result", SORTED_TABLE)
+def test_print_report(list, result):
+    """Test print_report function to sort the list."""
+    from donation_manager import print_donor_report
+    assert print_donor_report(list) == result
