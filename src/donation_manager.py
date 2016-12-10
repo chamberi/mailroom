@@ -1,13 +1,20 @@
 """This is an implementation of a mailroom manager."""
 from __future__ import print_function
 import math
-DONORS_DICT = {"john smith": [10, 20, 30], "sally jones": [40]}
-DONOR_LIST = []
+from tabulate import tabulate
+DONORS_DICT = {
+    "Wesley Brown": [10, 20, 30],
+    "Sally Jones": [40, 10, 50],
+    "Samantha Gross": [5, 10, 5, 20, 40],
+    "Brittany Foster": [25, 25, 30, 25, 25, 20, 30],
+    "Tom Valenzuela": [5, 10]
+}
 
 
 def original_prompt(dictionary):
     """Navigate our script."""
     while True:
+        print("To quit, enter q or quit.")
         user_choice = input("do you want to a: 'Send a Thank You?' or b:'Create a Report'? ")
         if user_choice.lower() == 'q':
             return
@@ -19,10 +26,11 @@ def original_prompt(dictionary):
 
 
 def create_report(dictionary):
-    """Print a report and return total, number and average donations."""
+    """Create a list with name, total, number and average donations."""
     big_total = 0
     big_times = 0
     big_average = 0
+    donor_list = []
     for name in dictionary:
         total = sum(dictionary[name])
         big_total += total
@@ -30,16 +38,17 @@ def create_report(dictionary):
         big_times += times
         average = math.floor(total / times)
         big_average = math.floor(big_total / big_times)
-        DONOR_LIST.append([name, total, times, average])
-        print("total donations : {} $ number of donations: {} average donation: {}".format(total, times, average))
-    print_donor_report(name, total, times, average)
+        donor_list.append([name, total, times, average])
+    print_donor_report(donor_list)
     return [big_total, big_times, big_average]
 
 
-def print_donor_report(DONOR_LIST):
-    """Sort the donor list and print it out."""
-    new_list = sorted(DONOR_LIST, key=lambda x:x[1], reverse=True)
-    print(new_list)
+def print_donor_report(lst):
+    """Sort the donor list and print it out in a table format."""
+    new_list = sorted(lst, key=lambda x: x[1], reverse=True)
+    new_list.insert(0, ["Full Name", "Total Donations", "Number of Donations", "Average Donation" ])
+    print(tabulate(new_list))
+    return new_list
 
 
 def enter_full_name(dictionary):

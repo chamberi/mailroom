@@ -11,7 +11,7 @@ setup(
     license="MIT",
     py_modules=['donation_manager'],
     package_dir={'': 'src'},
-    install_requires=['tox'],
+    install_requires=['tox', 'tabulate'],
     extras_require={
         "test": ["pytest", "pytest-watch", "pytest-cov"]
     },
