@@ -19,7 +19,6 @@ def original_prompt(dictionary):
         if user_choice.lower() == 'q':
             return
         elif user_choice == 'a':
-            print(user_choice)
             enter_full_name(dictionary)
         elif user_choice == 'b':
             create_report(dictionary)
@@ -69,9 +68,9 @@ def send_thanks(user_input, dictionary):
             return "printing list"
     elif user_input not in dictionary:
         add_new_donor(user_input, dictionary)
-        enter_amount(user_input, dictionary)
+        amount_prompt(user_input, dictionary)
     else:
-        enter_amount(user_input, dictionary)
+        amount_prompt(user_input, dictionary)
 
 
 def add_new_donor(user_input, dictionary):
@@ -80,27 +79,29 @@ def add_new_donor(user_input, dictionary):
     return dictionary
 
 
-def enter_amount(user_input, dictionary):
+def amount_prompt(user_input, dictionary):
+    """Prompt user for a donation amount."""
+    amount_input = input('Enter a donation amount: ')
+    enter_amount(user_input, dictionary, amount_input)
+
+
+def enter_amount(user_input, dictionary, donation_amount):
     """Prompt for a donation amount."""
-    donation_amount = input('Enter a donation amout: ')
-    if donation_amount.lower() == 'q':
-        return original_prompt(dictionary)
     try:
         donation = float(donation_amount)
         handle_donation(user_input, dictionary, donation)
+        return donation
     except ValueError:
-        enter_amount(user_input, dictionary)
+        if donation_amount.lower() == 'q':
+            return original_prompt(dictionary)
+        return amount_prompt(user_input, dictionary)
 
 
 def handle_donation(user_input, dictionary, donation_amount):
     """Add donation to dictionary."""
-    try:
-        if donation_amount.lower() == 'q':
-            original_prompt(dictionary)
-    except AttributeError:
-        dictionary[user_input].append(donation_amount)
-        write_email(user_input, donation_amount, dictionary)
-        return dictionary
+    dictionary[user_input].append(donation_amount)
+    write_email(user_input, donation_amount, dictionary)
+    return dictionary
 
 
 def write_email(user_input, donation_amount, dictionary):
@@ -111,4 +112,4 @@ def write_email(user_input, donation_amount, dictionary):
 
 
 if __name__ == '__main__':
-    original_prompt(DONORS_DICT)
+    original_prompt(DONORS_DICT)  # pragma: no cover

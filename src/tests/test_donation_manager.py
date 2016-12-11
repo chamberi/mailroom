@@ -47,6 +47,12 @@ def test_add_new_doner(user_input, dictionary, result):
     assert add_new_donor(user_input, dictionary, ) == result
 
 
+def test_enter_amount():
+    """Test enter_amount function."""
+    from donation_manager import enter_amount
+    assert enter_amount("John", {"John": [40]}, 30) == 30.0
+
+
 @pytest.mark.parametrize("user_name, amount, dictionary, result", HANDLE_DONATION_TABLE)
 def test_handle_donation(user_name, amount, dictionary, result):
     """Test handle new donation amount added to dictionary."""
