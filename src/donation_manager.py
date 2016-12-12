@@ -36,8 +36,8 @@ def create_report(dictionary):
         times = len(dictionary[name])
         big_times += times
         average = math.floor(total / times)
-        big_average = math.floor(big_total / big_times)
         donor_list.append([name, total, times, average])
+    big_average = math.floor(big_total / big_times)
     print_donor_report(donor_list)
     return [big_total, big_times, big_average]
 
@@ -52,7 +52,7 @@ def print_donor_report(lst):
 
 def enter_full_name(dictionary):
     """Prompt the user to enter a donor name."""
-    user_input = input('Enter a Full Name: ')
+    user_input = input('Enter a Full Name or List for a list of current donors: ')
     send_thanks(user_input, dictionary)
 
 
@@ -64,8 +64,8 @@ def send_thanks(user_input, dictionary):
     elif user_input.lower() == "list":
         for name in dictionary:
             print(name)
-            enter_full_name(dictionary)
-            return "printing list"
+        enter_full_name(dictionary)
+        return "printing list"
     elif user_input not in dictionary:
         add_new_donor(user_input, dictionary)
         amount_prompt(user_input, dictionary)
